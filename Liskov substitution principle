@@ -1,0 +1,41 @@
+#include <iostream>
+
+using namespace std;
+
+// Базовий клас Фігура
+class Shape {
+public:
+    virtual void draw() const = 0; // Чиста віртуальна функція для візуалізації фігури
+    virtual ~Shape() {}
+};
+
+// Підклас Коло, що успадковує від Фігури
+class Circle : public Shape {
+public:
+    void draw() const override { // Перевизначена функція для візуалізації кола
+        cout << "Це коло." << endl;
+    }
+};
+
+// Підклас Квадрат, що успадковує від Фігури
+class Square : public Shape {
+public:
+    void draw() const override { // Перевизначена функція для візуалізації квадрата
+        cout << "Це квадрат." << endl;
+    }
+};
+
+// Функція, що приймає посилання на базовий клас і викликає метод draw
+void drawShape(const Shape& shape) {
+    shape.draw(); // Поведінка не змінюється незалежно від типу фігури
+}
+
+int main() {
+    Circle circle;
+    Square square;
+
+    drawShape(circle); // Виклик з підтипом Circle
+    drawShape(square); // Виклик з підтипом Square
+
+    return 0;
+}
